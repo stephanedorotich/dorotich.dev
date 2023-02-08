@@ -1,0 +1,16 @@
+
+.mfrac {
+  padding: 0.5em;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.mfrac .numerator {
+  text-align: center;
+  border-bottom: 0.15rem solid;
+  padding: 0 2px
+}
+
+.mfrac .denominator {
+  text-align: center;
+}

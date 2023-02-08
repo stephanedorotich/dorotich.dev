@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/static/button.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <title>Fraction Simplification</title>
+  </head>
+  <body>
+    <div class="feedback">
+      <h1 class={{.Correct}}>{{.Text}}</h1>
+      <div class="hz-btn-list">
+        <form class={{.Hidden}} action="" method="POST">
+          <input type="hidden" name="n0" value={{.Numerator}}>
+          <input type="hidden" name="d0" value={{.Denominator}}>
+          <button class="button-30" role="button" type="submit">Try Again</button>
+        </form>
+        <button class="button-30" role="button" onclick="window.location.href='/practice/fraction-simplification'" autofocus>New Problem</button>
+      </div>
+    </div>
+  </body>
+</html>
