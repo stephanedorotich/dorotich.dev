@@ -23,6 +23,11 @@ func main() {
 	http.Handle("/practice/fraction-simplification", new(frac_smpl_handler));
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
-	fmt.Println("Listening on http://44.232.31.52:80")
-	log.Fatal(http.ListenAndServe(":80", nil))
+	go RedirectHTTP()
+
+	fmt.Println("Listening on http://44.232.31.52:443")
+	err := http.ListenAndServeTLS(":443", "/etc/letsencrypt/live/dorotich.dev/fullchain.pem", "/etc/letsencrypt/live/dorotich.dev/privkey.pem", nil)
+	if err != nil {
+		log.Fatalf("Error listening for HTTPS traffic: %v", err)
+	}
 }
