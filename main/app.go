@@ -5,6 +5,7 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -23,11 +24,15 @@ func main() {
 	http.Handle("/practice/fraction-simplification", new(frac_smpl_handler));
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
-	go RedirectHTTP()
-
-	fmt.Println("Listening on http://44.232.31.52:443")
-	err := http.ListenAndServeTLS(":443", "/etc/letsencrypt/live/dorotich.dev/fullchain.pem", "/etc/letsencrypt/live/dorotich.dev/privkey.pem", nil)
-	if err != nil {
-		log.Fatalf("Error listening for HTTPS traffic: %v", err)
+	if len(os.Args) == 1 {
+		// Spin up HTTPS server (port 443)
+		// Spint up HTTP redirect server (port 80)
+		go RedirectHTTP()
+		fmt.Println("Listening on https://44.232.31.52:443")
+		log.Fatal(http.ListenAndServeTLS(":443", "/etc/letsencrypt/live/dorotich.dev/fullchain.pem", "/etc/letsencrypt/live/dorotich.dev/privkey.pem", nil))
+	} else if os.Args[1] == "test" {
+		// Spin up on Local Host port 1331
+		fmt.Println("Listening on https://localhost:1331")
+		log.Fatal(http.ListenAndServe(":1331", nil))
 	}
 }
