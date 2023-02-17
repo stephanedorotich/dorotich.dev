@@ -81,7 +81,7 @@ func (h *frac_smpl_handler) ValidateProblem(w http.ResponseWriter, r *http.Reque
 		text = "Nope 😢"
 		hidden = ""
 	}
-	t, _ := template.ParseFiles("tmpl_frac_smpl_feedback.html")
+	t, _ := template.ParseFiles("templates/frac_smpl_feedback.html")
 	t.Execute(w, struct{
 		Correct string
 		Text string
@@ -93,7 +93,7 @@ func (h *frac_smpl_handler) ValidateProblem(w http.ResponseWriter, r *http.Reque
 }
 
 func (h *frac_smpl_handler)	DeliverProblem(w http.ResponseWriter, n0 int, d0 int) {
-	t, _ := template.ParseFiles("tmpl_frac_smpl.html")
+	t, _ := template.ParseFiles("templates/frac_smpl.html")
 	t.Execute(w, struct {
 		Numerator int
 		Denominator int
