@@ -1,0 +1,40 @@
+{{ define "header" }}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" type="text/css" href="/file/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/file/css/button.css">
+
+    <!-- meta data -->
+    <link rel="shortcut icon" type="image/png" href="/file/img/favicon.png"/>
+    <title>Stéphane Dorotich</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a class="navlink" type="link" href="/">
+        <img src="/file/img/favicon.png" width="30" height="30" alt=""/>
+        Dorotich.dev
+      </a>
+      <a class="navlink" type="link" href="/cv">
+        CV
+      </a>
+      <a class="navlink" type="link" href="/portfolio">
+        Portfolio
+      </a>
+      <div class="dropdown">
+        <button class="dropbtn navlink">
+        Math Practice &#9660 
+        </button>
+        <div class="dropdown-content">
+          <a href="/practice/fraction-simplification">Fraction Simplification</a>
+          <a href="/practice/fraction-summation">Fraction Sums</a>
+          <a href="/practice/fraction-multiplication">Fraction Products</a>
+        </div>
+      </div>
+    </nav>
+
+{{ end }}

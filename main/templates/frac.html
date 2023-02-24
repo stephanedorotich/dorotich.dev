@@ -1,0 +1,49 @@
+{{ template "header" . }}
+
+{{ template "math-practice" . }}
+
+<div class="notice body-block">
+    <p>
+        Question validation is down.
+        I'm updating my backend, meanwhile, the previous method is obsolete.
+        Thanks for your patience 😊
+        <br>
+        Sincerely, Stéphane
+    </p>
+</div>
+
+<div class="options">
+    <button>
+        <a type="link" href="/practice/fraction-simplification">
+            New Problem
+        </a>
+    </button>
+</div>
+
+<div class="problem body-block">
+    <p>
+        Simplify this fraction:
+    </p>
+
+    $$\frac{ {{.Numerator}} }{ {{.Denominator}} }$$
+
+    <form id="fraction-simplification-form">
+        <input type="hidden" name="n0" value={{.Numerator}}>
+        <input type="hidden" name="d0" value={{.Denominator}}>
+
+        <label for="n1">Numerator:</label>
+        <input type="number" name="n1" required autofocus>
+        <label for="d1">Denominator:</label>
+        <input type="number" name="d1" required>
+
+        <button class="button-30" type="submit" role="button">Submit</button>
+    </form>
+</div>
+
+<div class="result body-block">
+    <!-- Correct 😊 -->
+    <!-- <br>
+    Nope 😢 -->
+</div>
+
+{{ template "footer" . }}

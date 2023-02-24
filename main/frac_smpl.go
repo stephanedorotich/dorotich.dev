@@ -1,18 +1,10 @@
 package main
 
 import (
-	"html/template"
 	"math/rand"
 	"net/http"
 	"strconv"
-	"sync"
 )
-
-type frac_smpl_handler struct {
-	mu			sync.Mutex // guards n_correct, n_attempt
-	n_correct	int
-	n_attempt  	int
-}
 
 type frac_sol struct {
 	n0	int
@@ -28,7 +20,6 @@ func RandomFrac() (int, int) {
 	for b == a {
 		b = rand.Intn(12)+1
 	}
-
 	if (a < b) {
 		return a*cf, b*cf
 	} else {
@@ -36,7 +27,7 @@ func RandomFrac() (int, int) {
 	}
 }
 
-func GCD(a int, b int) int {
+func GCF(a int, b int) int {
 	for b != 0 {
 		t := b
 		b = a % b
@@ -45,69 +36,77 @@ func GCD(a int, b int) int {
 	return a
 }
 
-func ValidateSol(s * frac_sol) bool {
-	gcd := GCD(s.n0, s.d0)
-	simplifiedNumerator := s.n0 / gcd
-	simplifiedDenominator := s.d0 / gcd
-	if (simplifiedNumerator == s.n1 && simplifiedDenominator == s.d1) {
-		return true;
-	} else {
-		return false
-	}
+func ValidateSol(numbers []int) bool {
+	gcd := GCF(numbers[0], numbers[1])
+	simplifiedNumerator := numbers[0] / gcd
+	simplifiedDenominator := numbers[1] / gcd
+	return (simplifiedNumerator == numbers[2] && simplifiedDenominator == numbers[3])
 }
 
-func (h *frac_smpl_handler) ValidateProblem(w http.ResponseWriter, r *http.Request) {
-	var sol frac_sol
-	var err error
-	var correct string
-	var text string
-	var hidden string
-	
-	sol.n0, err = strconv.Atoi(r.PostFormValue("n0"))
-	sol.d0, err = strconv.Atoi(r.PostFormValue("d0"))
-	sol.n1, err = strconv.Atoi(r.PostFormValue("n1"))
-	sol.d1, err = strconv.Atoi(r.PostFormValue("d1"))
-	if (err != nil) {
-		h.DeliverProblem(w, sol.n0, sol.d0)
-		return
+func ValidateProblem(w http.ResponseWriter, r *http.Request) {
+	// Parse original fraction (n0/d0) and submitted solution (n1/d1)
+	// If any value is missing, or any value cannot be converted to an integer,
+	// send a HTTP 400 Bad Request response
+
+	var strings []string
+	var numbers []int
+
+    strings = append(strings, r.FormValue("n0"))
+    strings = append(strings, r.FormValue("d0"))
+    strings = append(strings, r.FormValue("n1"))
+    strings = append(strings, r.FormValue("d1"))
+
+	for _, str := range strings {
+		n, err := strconv.Atoi(str)
+		if err != nil {
+			http.Error(w, "Invalid form values", http.StatusBadRequest)
+			return
+		}
+		numbers = append(numbers, n)
 	}
-	v := ValidateSol(&sol)
+
+	// form contents are valid
+	v := ValidateSol(numbers)
 	if (v) {
-		correct = "correct"
-		text = "Correct 😊"
-		hidden = "hidden"
+		DeliverCorrect(w)
 	} else {
-		correct = "incorrect"
-		text = "Nope 😢"
-		hidden = ""
+		DeliverIncorrect(w, numbers[0], numbers[1])
 	}
-	t, _ := template.ParseFiles("templates/frac_smpl_feedback.html")
-	t.Execute(w, struct{
-		Correct string
-		Text string
-		Hidden string
-		Numerator int
-		Denominator int
-	}{correct, text, hidden, sol.n0, sol.d0})
-	return
 }
 
-func (h *frac_smpl_handler)	DeliverProblem(w http.ResponseWriter, n0 int, d0 int) {
-	t, _ := template.ParseFiles("templates/frac_smpl.html")
-	t.Execute(w, struct {
+func DeliverProblem(w http.ResponseWriter, n0 int, d0 int) {
+	data := struct {
 		Numerator int
 		Denominator int
-	}{n0, d0})
+	}{n0, d0}
+	SendTemplate(w, "frac.html", data)
 }
 
-func (h *frac_smpl_handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func DeliverCorrect(w http.ResponseWriter) {
+	err := templates.ExecuteTemplate(w, "frac_smpl_correct.html", nil)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+func DeliverIncorrect(w http.ResponseWriter, n int, d int) {
+	err := templates.ExecuteTemplate(w, "frac_smpl_incorrect.html", struct {
+		Numerator int
+		Denominator int
+	}{n, d})
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+func ServeHTTP_FracSmpl(w http.ResponseWriter, r *http.Request) {
 	if (r.Method == "POST") {
-		h.ValidateProblem(w, r)
+		ValidateProblem(w, r)
 		return
 	}
 
 	// Deliver new problem
-	n0, d0 := RandomFrac();
-	h.DeliverProblem(w, n0, d0)
+	n, d := RandomFrac();
+	DeliverProblem(w, n, d)
 	return
 }
