@@ -1,8 +1,7 @@
 :root {
-  min-width: 25rem;
   --navbar-height: 40px;
   --navbar-padding: 2rem;
-  --min-width: 25rem;
+  --min-width: 200px;
 
   --light-text:#ecf2ea;
   --dark-text: #112233;
@@ -201,7 +200,9 @@
 
 .Sidebar_container {
   position: absolute;
-  width: 25rem;
+  width: 100%;
+  max-width: 25rem;
+  min-width: var(--min-width);
   top: 0;
   right: 0;
   background: white;
@@ -321,7 +322,6 @@ body {
   flex-direction: column;
   justify-content: center;
   min-height: calc(100vh - var(--navbar-height));
-  min-width: var(--min-width);
   background: var(--light-text);
   background-attachment: fixed;
   color: var(--dark-text);

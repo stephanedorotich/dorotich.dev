@@ -45,19 +45,20 @@ iframe {
 }
 
 .hero .content {
-  padding: 0 2rem;
+  padding: 0 1rem;
   text-align: justify;
-  height: 300px;
   max-width: 600px;
 }
 
 .hero img {
   display: block;
   padding: 0 1rem;
+  width: 80%;
+  height: auto;
   max-width: 300px;
   max-height: 300px;
   border-radius: 20%;
-  padding: 2rem;
+  padding: 1rem 2rem;
 }
 
 .footer {
@@ -85,10 +86,6 @@ iframe {
   padding-right: 2rem;
 }
 
-.footer p {
-  white-space: nowrap;
-}
-
 .footer img {
   height: calc(var(--navbar-height) - 20px);
   width: auto;
@@ -104,16 +101,26 @@ iframe {
   .hero {
     flex-direction: column;
     justify-content: center;
+    padding: 0 1rem;
     text-align: left;
     align-items: center;
   }
-  
+
   .fullheight {
     height: fit-content;
   }
   
   .Portfolio_item {
     padding: 2rem 1rem !important;
+  }
+
+  .footer {
+    padding: 0 1rem;
+    width: calc(100% - 2rem);
+  }
+
+  .footer a {
+    padding-right: .75rem;
   }
 }
 
