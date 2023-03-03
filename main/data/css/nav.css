@@ -9,8 +9,13 @@
   
   --dark-highlight: #38194d;
   --mid-highlight: #542574;
-  --mid-gradient: linear-gradient(#542574, #2a123a);
   --light-highlight: #ba8bda;
+
+  --mid-gradient: linear-gradient(#542574, #2a123a);
+  --light-gradient: linear-gradient(#7f37ae, #542574);
+
+  --mid-accent: #658e57;
+  --light-accent: #8db181;
   
   --light-background: #f0eaf2;
   --light-grey-background: #d2cdd4;
@@ -56,6 +61,7 @@
   justify-content: center;
   color: var(--light-text);
   font-family: monospace;
+  z-index: 10;
 }
 
 .Navbar_container {
@@ -69,7 +75,7 @@
 
 .Navbar_nav {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   list-style: none;
   font-size: 1rem;
   padding: 0;
@@ -127,7 +133,7 @@
 }
 
 .Navbar_subitem:hover {
-  background: var(--mid-highlight);
+  background: var(--light-gradient);
   color: var(--light-text);
 }
 
@@ -160,6 +166,15 @@
   .Navbar_hamburger {
     display: flex;
     align-items: center;
+  }
+
+  .body-block {
+    padding: 0 1rem !important;
+    width: calc(100vw - 2rem) !important;
+  }
+
+  .Portfolio_item {
+    padding: 2rem 1rem !important;
   }
 }
 
@@ -308,7 +323,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: calc(100vh-var(--navbar-height));
+  min-height: calc(100vh - var(--navbar-height));
   min-width: var(--min-width);
   background: var(--light-text);
   background-attachment: fixed;

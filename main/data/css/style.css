@@ -20,13 +20,24 @@ iframe {
 }
 
 .body-block {
-  padding: 1rem 2rem;
+  padding: 0 2rem;
   width: calc(100vw - 2 * var(--navbar-padding));
   min-width: calc(var(--min-width) - 2 * var(--navbar-padding));
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: left;
-  justify-content: left;
+}
+
+.fullheight {
+  height: calc(100vh - 2 * var(--navbar-height));
+}
+
+@media only screen and (width < 680px) {
+  .fullheight {
+    height: fit-content;
+  }
 }
 
 .hero {
@@ -35,10 +46,8 @@ iframe {
   align-items: center;
   justify-content: center;
   padding: 0 2rem;
-  height: calc(100vh - 2 * var(--navbar-height));
   min-height: 400px;
   background: var(--light-text);
-  padding-bottom: var(--navbar-height);
 }
 
 .hero .content {
@@ -65,8 +74,6 @@ iframe {
   height: var(--navbar-height);
   width: calc(100vw - 4rem);
   padding: 0 2rem;
-  position: fixed;
-  bottom: 0;
   background: var(--light-highlight);
   color: white;
   font-family: var(--monospace);
@@ -84,6 +91,10 @@ iframe {
   padding-right: 2rem;
 }
 
+.footer p {
+  white-space: nowrap;
+}
+
 .footer img {
   height: calc(var(--navbar-height) - 20px);
   width: auto;
@@ -92,10 +103,6 @@ iframe {
 @media only screen and (max-width : 680px) {
   .body-block {
     flex-direction: column;
-  }
-
-  .footer {
-    display: none;
   }
 
   .hero {

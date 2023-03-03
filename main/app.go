@@ -25,6 +25,7 @@ func AssignWebHandles() {
 	
 	http.HandleFunc("/", HomeHandler)
 	http.HandleFunc("/cv", CVHandler)
+	http.HandleFunc("/portfolio", PortfolioHandler)
 	http.HandleFunc("/practice/fraction-simplification", ServeHTTP_FracSmpl);
 }
 
@@ -72,6 +73,10 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 
 func CVHandler(w http.ResponseWriter, r *http.Request) {
 	SendTemplate(w, "cv.html", nil)
+}
+
+func PortfolioHandler(w http.ResponseWriter, r *http.Request) {
+	SendTemplate(w, "portfolio.html", nil)
 }
 
 func FileHandler(w http.ResponseWriter, r *http.Request) {

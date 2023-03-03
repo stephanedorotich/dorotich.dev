@@ -1,0 +1,74 @@
+{{ template "header" . }}
+
+<link rel="stylesheet" type="text/css" href="/file/css/portfolio.css">
+
+<section class="body-block">
+    <div class="Portfolio_item">
+        <h1>Tutoring App</h1>
+        <h4>Highlights</h4>
+        <div class="Portfolio_highlight">
+            <ul>
+                <li>Python3</li>
+                <li>LaTeX</li>
+                <li>Ubuntu</li>
+                <li>git</li>
+                <li>Pandas</li>
+                <li>Pandoc</li>
+                <li>Markdown</li>
+            </ul>
+        </div>
+        <h4>Description</h4>
+        <div class="Portfolio_description">
+            {{ template "portfolio_tutoring_app" . }}
+        </div>
+        <h4>Repository</h4>
+        <a href="https://github.com/stephanedorotich/TutoringInvoices" target="_blank">github.com/stephanedorotich/TutoringInvoices</a>
+    </div>
+</section>
+
+<section class="body-block">
+    <div class="Portfolio_item">
+        <h1>Mobile-Responsive Website</h1>
+        <h4>Highlights</h4>
+        <div class="Portfolio_highlight">
+            <ul>
+                <li>GitHub</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>Google Forms</li>
+            </ul>
+        </div>
+        <h4>Description</h4>
+        <div class="Portfolio_description">
+            {{ template "portfolio_website" . }}
+        </div>
+        <h4>Repository</h4>
+        <a href="https://github.com/stephanedorotich/stephanedorotich.github.io" target="_blank">github.com/stephanedorotich/stephanedorotich.github.io</a>
+    </div>
+</section>
+
+<section class="body-block">
+    <div class="Portfolio_item">
+        <h1>Dynamic Website</h1>
+        <h4>Highlights</h4>
+        <div class="Portfolio_highlight">
+            <ul>
+                <li>GoLang</li>
+                <li>AWS</li>
+                <li>git</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+            </ul>
+        </div>
+        <h4>Description</h4>
+        <div class="Portfolio_description">
+            {{ template "portfolio_dynamic_website" . }}
+        </div>
+        <h4>Repository</h4>
+        <a href="https://github.com/stephanedorotich/dorotich.dev" target="_blank">github.com/stephanedorotich/dorotich.dev</a>
+    </div>
+</section>
+
+{{ template "footer" . }}

@@ -1,0 +1,23 @@
+{{ define "portfolio_tutoring_app" }}
+
+<p>
+    I've been a private Math, Physics, and Chemistry tutor for nearly a decade. When I started
+    getting comfortable with Python in 2019 I developed a CLI application for my business.
+</p>
+<p>
+    My program tracks Students, Sessions, and Invoices. I use it in Ubuntu (WSL2) and have used
+    it consistently since 2019. Its raison d'être is to generate PDF invoices each month; a time-consuming
+    task.
+</p>
+<img src="/file/img/tutoring_app.png">
+<p>
+    At the time, I had been recently exposed to LaTeX. This lead me to use python string literals
+    to write an entire LaTeX invoice which I used to generate invoices.
+</p>
+<p>
+    Over the years I fixed a various issues and added new features. In 2022, I performed a major 
+    system upgrade. My program now uses Pandas dataframes for data storage and manipulation and
+    Pandoc, Markdown, and Yaml for generating the PDFs in a less verbose and more structured manner.
+</p>
+
+{{ end }}
