@@ -374,7 +374,7 @@ iframe {
 }
 
 .fullheight {
-  height: calc(100vh - 2 * var(--navbar-height));
+  min-height: calc(100vh - 2 * var(--navbar-height));
 }
 
 
@@ -390,7 +390,6 @@ iframe {
   align-items: center;
   justify-content: center;
   padding: 0 2rem;
-  min-height: 400px;
   background: var(--light-text);
 }
 
