@@ -26,7 +26,7 @@ func AssignWebHandles() {
 	http.HandleFunc("/", HomeHandler)
 	http.HandleFunc("/cv", CVHandler)
 	http.HandleFunc("/portfolio", PortfolioHandler)
-	http.HandleFunc("/practice/fraction-simplification", ServeHTTP_FracSmpl);
+	// http.HandleFunc("/practice/fraction-simplification", ServeHTTP_FracSmpl);
 }
 
 func StartServer() {
