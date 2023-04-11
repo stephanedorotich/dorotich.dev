@@ -91,6 +91,7 @@ func FileHandler(w http.ResponseWriter, r *http.Request) {
 	file, err := os.Open("data/" + filetype + "/" + filename)
 	if err != nil {
 		http.Error(w, "File not found", http.StatusNotFound)
+		return
 	}
 	defer file.Close()
 
