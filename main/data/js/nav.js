@@ -25,7 +25,12 @@ function ToggleSidebarSublist() {
   // Toggle Chevron direction
   const imgs = this.querySelectorAll("img");
   for (let i = 0; i < imgs.length; i++) {
-      imgs[i].classList.toggle('hidden');
+    if (imgs[i].style.opacity == "") {
+      sublist[i].style.opacity = 1;
+    } else {
+      sublist[i].style.opacity = "";
+    }
+      // imgs[i].classList.toggle('hidden');
   }
 
   // Toggle Sublist
